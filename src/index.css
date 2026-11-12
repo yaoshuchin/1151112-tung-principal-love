@@ -1,0 +1,211 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Noto Sans TC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+/* =========================================================================
+   1. 字體大小模式 (Font Size Scale: 小 / 中 / 大)
+   ========================================================================= */
+.font-scale-sm {
+  font-size: 15px;
+}
+.font-scale-sm p, .font-scale-sm span, .font-scale-sm li {
+  line-height: 1.6;
+}
+
+.font-scale-md {
+  font-size: 16.5px;
+}
+.font-scale-md p, .font-scale-md span, .font-scale-md li {
+  line-height: 1.72;
+}
+
+.font-scale-lg {
+  font-size: 19px;
+}
+.font-scale-lg p, .font-scale-lg span, .font-scale-lg li {
+  line-height: 1.88;
+}
+.font-scale-lg h1 {
+  font-size: 2.85rem !important;
+}
+.font-scale-lg h2 {
+  font-size: 2.35rem !important;
+}
+.font-scale-lg h3 {
+  font-size: 1.85rem !important;
+}
+
+/* =========================================================================
+   2. 背景色系 (Background Scheme: 淺色 / 深色 / 淡藍)
+   ========================================================================= */
+/* 淺色模式 (Light) */
+.scheme-light {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* 深色模式 (Dark) */
+.scheme-dark {
+  background-color: #090e1a !important;
+  color: #f8fafc !important;
+}
+.scheme-dark .theme-card,
+.scheme-dark .bg-white {
+  background-color: #121929 !important;
+  border-color: #1e293b !important;
+  color: #f8fafc !important;
+}
+.scheme-dark .bg-slate-50 {
+  background-color: #0d1424 !important;
+}
+.scheme-dark .text-slate-900 {
+  color: #ffffff !important;
+}
+.scheme-dark .text-slate-800 {
+  color: #f1f5f9 !important;
+}
+.scheme-dark .text-slate-700 {
+  color: #e2e8f0 !important;
+}
+.scheme-dark .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+.scheme-dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+.scheme-dark .border-slate-200,
+.scheme-dark .border-slate-100 {
+  border-color: #1e293b !important;
+}
+
+/* 淡藍模式 (Pale Blue - 溫潤淡雅天青水藍) */
+.scheme-paleBlue {
+  background-color: #edf5ff !important;
+  color: #0c2340 !important;
+}
+.scheme-paleBlue .theme-card,
+.scheme-paleBlue .bg-white {
+  background-color: #ffffff !important;
+  border-color: #c7e0fc !important;
+}
+.scheme-paleBlue .bg-slate-50 {
+  background-color: #e2effd !important;
+}
+.scheme-paleBlue .text-slate-900 {
+  color: #091e36 !important;
+}
+.scheme-paleBlue .text-slate-800 {
+  color: #102a4c !important;
+}
+.scheme-paleBlue .text-slate-700 {
+  color: #1c3d64 !important;
+}
+.scheme-paleBlue .text-slate-600 {
+  color: #274d7a !important;
+}
+.scheme-paleBlue .text-slate-500 {
+  color: #4a6f99 !important;
+}
+.scheme-paleBlue .border-slate-200,
+.scheme-paleBlue .border-slate-100 {
+  border-color: #cbe3fc !important;
+}
+
+/* =========================================================================
+   3. 風格布景主題 (Style Theme: 西式 / 中式 / 日式)
+   ========================================================================= */
+/* 西式 (Western Academy & Ivy League) */
+.style-western {
+  --primary-accent: #1d4ed8;
+  --gold-accent: #d97706;
+}
+.style-western .gradient-text {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #d97706 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* 中式 (Classical Chinese Academy 翰墨書院朱砂) */
+.style-chinese {
+  font-family: 'Noto Serif TC', serif;
+}
+.style-chinese h1, 
+.style-chinese h2, 
+.style-chinese h3, 
+.style-chinese h4,
+.style-chinese .font-serif {
+  font-family: 'Noto Serif TC', serif !important;
+  letter-spacing: 0.04em;
+}
+.style-chinese .gradient-text {
+  background: linear-gradient(135deg, #b91c1c 0%, #dc2626 50%, #c27803 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+.style-chinese .bg-blue-600 {
+  background-color: #b91c1c !important;
+}
+.style-chinese .text-blue-600 {
+  color: #b91c1c !important;
+}
+.style-chinese .border-blue-600 {
+  border-color: #b91c1c !important;
+}
+.style-chinese .chinese-seal {
+  display: inline-block;
+  border: 2px solid #b91c1c;
+  color: #b91c1c;
+  padding: 1px 6px;
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+/* 日式 (Japanese Zen & Wabi-Sabi 和風禪韻) */
+.style-japanese {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.style-japanese .gradient-text {
+  background: linear-gradient(135deg, #2f4b2a 0%, #425e3b 50%, #997843 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+.style-japanese .bg-blue-600 {
+  background-color: #3f5e3b !important;
+}
+.style-japanese .text-blue-600 {
+  color: #3f5e3b !important;
+}
+.style-japanese .border-blue-600 {
+  border-color: #3f5e3b !important;
+}
+.style-japanese .rounded-3xl {
+  border-radius: 1.25rem !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.glass-nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
