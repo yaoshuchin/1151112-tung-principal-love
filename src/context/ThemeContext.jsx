@@ -3,17 +3,19 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  // 1. Font Size: 'sm' (小), 'md' (中 - default), 'lg' (大)
+  // 1. 字體大小標籤: 'lg' (大), 'md' (中 - default), 'sm' (小)
   const [fontSize, setFontSize] = useState(() => {
     return localStorage.getItem("site_font_size") || "md";
   });
 
-  // 2. Background Scheme: 'light' (淺色 - default), 'dark' (深色), 'paleBlue' (淡藍)
+  // 2. 背景標籤: 'light' (淺 - default), 'dark' (深), 'blue' (藍), 'green' (綠)
   const [bgScheme, setBgScheme] = useState(() => {
-    return localStorage.getItem("site_bg_scheme") || "light";
+    const saved = localStorage.getItem("site_bg_scheme");
+    if (saved === "paleBlue") return "blue";
+    return saved || "light";
   });
 
-  // 3. Style Theme: 'western' (西式 - default), 'chinese' (中式), 'japanese' (日式)
+  // 3. 風格布景標籤: 'western' (西式 - default), 'chinese' (中式), 'japanese' (日式)
   const [styleTheme, setStyleTheme] = useState(() => {
     return localStorage.getItem("site_style_theme") || "western";
   });

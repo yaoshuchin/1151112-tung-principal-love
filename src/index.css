@@ -43,15 +43,15 @@
 }
 
 /* =========================================================================
-   2. 背景色系 (Background Scheme: 淺色 / 深色 / 淡藍)
+   2. 背景色系標籤 (Background Schemes: 淺 / 深 / 藍 / 綠)
    ========================================================================= */
-/* 淺色模式 (Light) */
+/* 淺 (Light) */
 .scheme-light {
   background-color: #f8fafc;
   color: #0f172a;
 }
 
-/* 深色模式 (Dark) */
+/* 深 (Dark) */
 .scheme-dark {
   background-color: #090e1a !important;
   color: #f8fafc !important;
@@ -85,37 +85,86 @@
   border-color: #1e293b !important;
 }
 
-/* 淡藍模式 (Pale Blue - 溫潤淡雅天青水藍) */
+/* 藍 (Blue - 溫潤淡雅天青水藍) */
+.scheme-blue,
 .scheme-paleBlue {
   background-color: #edf5ff !important;
   color: #0c2340 !important;
 }
+.scheme-blue .theme-card,
+.scheme-blue .bg-white,
 .scheme-paleBlue .theme-card,
 .scheme-paleBlue .bg-white {
   background-color: #ffffff !important;
   border-color: #c7e0fc !important;
 }
+.scheme-blue .bg-slate-50,
 .scheme-paleBlue .bg-slate-50 {
   background-color: #e2effd !important;
 }
+.scheme-blue .text-slate-900,
 .scheme-paleBlue .text-slate-900 {
   color: #091e36 !important;
 }
+.scheme-blue .text-slate-800,
 .scheme-paleBlue .text-slate-800 {
   color: #102a4c !important;
 }
+.scheme-blue .text-slate-700,
 .scheme-paleBlue .text-slate-700 {
   color: #1c3d64 !important;
 }
+.scheme-blue .text-slate-600,
 .scheme-paleBlue .text-slate-600 {
   color: #274d7a !important;
 }
+.scheme-blue .text-slate-500,
 .scheme-paleBlue .text-slate-500 {
   color: #4a6f99 !important;
 }
+.scheme-blue .border-slate-200,
+.scheme-blue .border-slate-100,
 .scheme-paleBlue .border-slate-200,
 .scheme-paleBlue .border-slate-100 {
   border-color: #cbe3fc !important;
+}
+
+/* 綠 (Green - 欣欣向榮翠綠清新護眼) */
+.scheme-green {
+  background-color: #f0faf3 !important;
+  color: #064e3b !important;
+}
+.scheme-green .theme-card,
+.scheme-green .bg-white {
+  background-color: #ffffff !important;
+  border-color: #bbf7d0 !important;
+}
+.scheme-green .bg-slate-50 {
+  background-color: #e1f7e9 !important;
+}
+.scheme-green .text-slate-900 {
+  color: #063d27 !important;
+}
+.scheme-green .text-slate-800 {
+  color: #064e3b !important;
+}
+.scheme-green .text-slate-700 {
+  color: #046c4e !important;
+}
+.scheme-green .text-slate-600 {
+  color: #15803d !important;
+}
+.scheme-green .text-slate-500 {
+  color: #2f855a !important;
+}
+.scheme-green .border-slate-200,
+.scheme-green .border-slate-100 {
+  border-color: #bbf7d0 !important;
+}
+.scheme-green .gradient-text {
+  background: linear-gradient(135deg, #059669 0%, #10b981 50%, #d97706 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
 }
 
 /* =========================================================================
