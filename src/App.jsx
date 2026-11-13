@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import EntranceGate from "./components/EntranceGate";
 import CustomizationBar from "./components/CustomizationBar";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -15,6 +16,16 @@ import ImageLightboxModal from "./components/ImageLightboxModal";
 
 function MainContent() {
   const { fontSize, bgScheme, styleTheme } = useTheme();
+
+  // Authentication Gate: Enter with password 049 (never mention 049 in UI)
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return sessionStorage.getItem("site_authenticated") === "true";
+  });
+
+  const handleLock = () => {
+    sessionStorage.removeItem("site_authenticated");
+    setIsAuthenticated(false);
+  };
 
   const [modalState, setModalState] = useState({
     isOpen: false,
@@ -36,6 +47,11 @@ function MainContent() {
     setModalState((prev) => ({ ...prev, isOpen: false }));
   };
 
+  // If not authenticated, show entrance gate requiring password
+  if (!isAuthenticated) {
+    return <EntranceGate onAuthenticated={() => setIsAuthenticated(true)} />;
+  }
+
   const isDark = bgScheme === "dark";
 
   return (
@@ -45,8 +61,8 @@ function MainContent() {
       }`}
       id="top"
     >
-      {/* Top Customization Bar: Font (大/中/小), Scheme (淺色/深色/淡藍), Style (日/中/西), 密碼049 */}
-      <CustomizationBar />
+      {/* Top Customization Bar: Font (大/中/小), Scheme (淺色/深色/淡藍), Style (日/中/西), Lock */}
+      <CustomizationBar onLock={handleLock} />
 
       {/* Main Navbar */}
       <Navbar />
@@ -82,7 +98,7 @@ function MainContent() {
         {/* 7. Photographic Gallery */}
         <PhotoGallery onOpenImage={handleOpenImage} />
 
-        {/* 8. Principal Vision & Governance Blueprint & PDF Download */}
+        {/* 8. Principal Vision & Governance Blueprint */}
         <PrincipalVision />
       </main>
 

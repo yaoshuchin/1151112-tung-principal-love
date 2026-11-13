@@ -1,8 +1,8 @@
 import React from "react";
 import { useTheme } from "../context/ThemeContext";
-import { Type, Palette, Sparkles, Moon, Sun, Droplets } from "lucide-react";
+import { Type, Palette, Sparkles, Moon, Sun, Droplets, Lock } from "lucide-react";
 
-export default function CustomizationBar() {
+export default function CustomizationBar({ onLock }) {
   const {
     fontSize,
     setFontSize,
@@ -27,7 +27,7 @@ export default function CustomizationBar() {
           </span>
         </div>
 
-        {/* Right: Customization Controls (Font, Scheme, Style) */}
+        {/* Right: Customization Controls (Font, Scheme, Style, Lock) */}
         <div className="flex flex-wrap items-center gap-3">
           {/* 1. 字體大小 (大 / 中 / 小) */}
           <div className="flex items-center space-x-1 bg-slate-800/90 rounded-lg p-0.5 border border-slate-700">
@@ -154,6 +154,18 @@ export default function CustomizationBar() {
               西式
             </button>
           </div>
+
+          {/* 4. 重新鎖定按鈕 (不提 049) */}
+          {onLock && (
+            <button
+              onClick={onLock}
+              className="px-2 py-1 rounded text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 transition flex items-center space-x-1"
+              title="重新鎖定通道"
+            >
+              <Lock className="w-3 h-3 text-amber-400" />
+              <span>鎖定</span>
+            </button>
+          )}
         </div>
       </div>
     </div>
