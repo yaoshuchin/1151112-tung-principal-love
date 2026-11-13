@@ -20,7 +20,20 @@ export function ThemeProvider({ children }) {
     return localStorage.getItem("site_style_theme") || "western";
   });
 
+  // Root HTML Font Size Scaling:
+  // Directly controls document.documentElement.style.fontSize so all Tailwind rem classes scale globally!
   useEffect(() => {
+    document.documentElement.classList.remove("font-scale-sm", "font-scale-md", "font-scale-lg");
+    document.documentElement.classList.add(`font-scale-${fontSize}`);
+
+    if (fontSize === "lg") {
+      document.documentElement.style.fontSize = "20px";
+    } else if (fontSize === "sm") {
+      document.documentElement.style.fontSize = "14px";
+    } else {
+      document.documentElement.style.fontSize = "16px";
+    }
+
     localStorage.setItem("site_font_size", fontSize);
   }, [fontSize]);
 
