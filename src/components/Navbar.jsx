@@ -129,9 +129,10 @@ export default function Navbar({ activePage = 'home', onSelectPage }) {
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hover:bg-blue-100'
               }`}
+              title="QR"
             >
               <QrCode className="w-4 h-4 text-blue-500" />
-              <span>QR Code 與短網址</span>
+              <span>QR</span>
             </button>
           </nav>
 
@@ -165,10 +166,10 @@ export default function Navbar({ activePage = 'home', onSelectPage }) {
                   ? 'bg-blue-600 text-white border-blue-600'
                   : 'bg-blue-50 text-blue-700 border-blue-200'
               }`}
-              title="QR Code 與短網址"
+              title="QR"
             >
               <QrCode className="w-4 h-4" />
-              <span>QR碼</span>
+              <span>QR</span>
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -210,7 +211,7 @@ export default function Navbar({ activePage = 'home', onSelectPage }) {
               }`}
             >
               <QrCode className="w-4 h-4" />
-              <span>QR Code 分頁</span>
+              <span>QR</span>
             </button>
           </div>
 

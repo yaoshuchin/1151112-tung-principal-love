@@ -182,10 +182,10 @@ export default function CustomizationBar({ activePage = 'home', onSelectPage }) 
                   ? 'bg-blue-600 text-white border-blue-500 shadow-sm'
                   : 'bg-slate-900 hover:bg-slate-800 text-blue-300 hover:text-white border-slate-700/80'
               }`}
-              title="切換至 QR Code 與短網址專頁"
+              title="QR"
             >
               <QrCode className="w-3.5 h-3.5 text-blue-400" />
-              <span>{activePage === 'qrcode' ? '返回首頁' : 'QR 碼'}</span>
+              <span>{activePage === 'qrcode' ? '返回首頁' : 'QR'}</span>
             </button>
           )}
         </div>
