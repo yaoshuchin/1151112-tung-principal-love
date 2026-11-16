@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
-import EntranceGate from "./components/EntranceGate";
 import CustomizationBar from "./components/CustomizationBar";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -17,16 +16,6 @@ import QRCodePage from "./components/QRCodePage";
 
 function MainContent() {
   const { fontSize, bgScheme, styleTheme } = useTheme();
-
-  // Authentication Gate: Enter with password 049 (never mention 049 in UI)
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return sessionStorage.getItem("site_authenticated") === "true";
-  });
-
-  const handleLock = () => {
-    sessionStorage.removeItem("site_authenticated");
-    setIsAuthenticated(false);
-  };
 
   // Page Routing: 'home' or 'qrcode'
   const [activePage, setActivePage] = useState(() => {
@@ -83,11 +72,6 @@ function MainContent() {
     setModalState((prev) => ({ ...prev, isOpen: false }));
   };
 
-  // If not authenticated, show entrance gate requiring password
-  if (!isAuthenticated) {
-    return <EntranceGate onAuthenticated={() => setIsAuthenticated(true)} />;
-  }
-
   const isDark = bgScheme === "dark";
 
   return (
@@ -97,9 +81,8 @@ function MainContent() {
       }`}
       id="top"
     >
-      {/* Top Customization Bar: Font (大/中/小), Scheme (淺/深/藍/綠), Style (日/中/西), Page Switch, Lock */}
+      {/* Top Customization Bar: Font (大/中/小), Scheme (淺/深/藍/綠), Style (日/中/西), Page Switch */}
       <CustomizationBar
-        onLock={handleLock}
         activePage={activePage}
         onSelectPage={handleSelectPage}
       />

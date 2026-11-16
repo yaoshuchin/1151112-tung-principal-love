@@ -1,8 +1,8 @@
 import React from "react";
 import { useTheme } from "../context/ThemeContext";
-import { Type, Palette, Sparkles, Lock, QrCode } from "lucide-react";
+import { Type, Palette, Sparkles, QrCode } from "lucide-react";
 
-export default function CustomizationBar({ onLock, activePage = 'home', onSelectPage }) {
+export default function CustomizationBar({ activePage = 'home', onSelectPage }) {
   const {
     fontSize,
     setFontSize,
@@ -186,18 +186,6 @@ export default function CustomizationBar({ onLock, activePage = 'home', onSelect
             >
               <QrCode className="w-3.5 h-3.5 text-blue-400" />
               <span>{activePage === 'qrcode' ? '返回首頁' : 'QR 碼'}</span>
-            </button>
-          )}
-
-          {/* 5. 重新鎖定按鈕 */}
-          {onLock && (
-            <button
-              onClick={onLock}
-              className="px-2.5 py-1.5 rounded-xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-amber-300 border border-slate-700/80 transition flex items-center space-x-1"
-              title="重新鎖定通道"
-            >
-              <Lock className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden sm:inline">鎖定</span>
             </button>
           )}
         </div>
