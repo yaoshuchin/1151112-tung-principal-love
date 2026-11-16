@@ -2,20 +2,21 @@ import React from "react";
 import { personalInfo } from "../data/siteData";
 import { Phone, Mail, MapPin, ArrowUp, Heart, Sparkles, BookOpen } from "lucide-react";
 
-export default function Footer() {
+export default function Footer({ onSelectPage }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const navLinks = [
-    { label: "首頁簡介", href: "#top" },
-    { label: "教育飛輪", href: "#flywheel" },
-    { label: "感動故事", href: "#stories" },
-    { label: "推薦函原件", href: "#recommendations" },
-    { label: "殊榮與歷練", href: "#honors" },
-    { label: "媒體報導", href: "#media" },
-    { label: "光影藝廊", href: "#gallery" },
-    { label: "治校藍圖", href: "#vision" },
+    { label: "首頁簡介", href: "#top", page: "home" },
+    { label: "教育飛輪", href: "#flywheel", page: "home" },
+    { label: "感動故事", href: "#stories", page: "home" },
+    { label: "推薦函原件", href: "#recommendations", page: "home" },
+    { label: "殊榮與歷練", href: "#honors", page: "home" },
+    { label: "媒體報導", href: "#media", page: "home" },
+    { label: "光影藝廊", href: "#gallery", page: "home" },
+    { label: "治校藍圖", href: "#vision", page: "home" },
+    { label: "二維碼與短網址", href: "#qrcode", page: "qrcode" },
   ];
 
   return (
@@ -61,6 +62,11 @@ export default function Footer() {
                 <li key={i}>
                   <a
                     href={link.href}
+                    onClick={() => {
+                      if (onSelectPage && link.page) {
+                        onSelectPage(link.page);
+                      }
+                    }}
                     className="text-slate-400 hover:text-amber-400 transition block py-1"
                   >
                     {link.label}

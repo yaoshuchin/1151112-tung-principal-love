@@ -388,3 +388,25 @@ export const photoGallery = [
   }
 ];
 
+
+export const qrLinks = {
+  primary: {
+    title: "主通道專屬短網址",
+    shortUrl: "https://tinyurl.com/22jbypgh",
+    targetUrl: "https://yaoshuchin.github.io/1151112-tung-principal-love/",
+    qr500: "./images/qr/qr_primary_500.png",
+    qr1000: "./images/qr/qr_primary_1000.png",
+    provider: "TinyURL",
+    note: "官方主推短網址，適用於甄選簡報大螢幕投影、文宣手冊印製與委員手機即刻掃描"
+  },
+  backup: {
+    title: "備用通道短網址",
+    shortUrl: "https://is.gd/FZbwQm",
+    targetUrl: "https://yaoshuchin.github.io/1151112-tung-principal-love/",
+    qr500: "./images/qr/qr_backup_500.png",
+    qr1000: "./images/qr/qr_backup_1000.png",
+    provider: "is.gd",
+    note: "獨立備援短網址通道，雙重保障連線穩定性，隨時掃碼暢行無阻"
+  },
+  officialUrl: "https://yaoshuchin.github.io/1151112-tung-principal-love/"
+};

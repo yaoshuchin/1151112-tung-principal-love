@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider, useTheme } from "./context/ThemeContext";
 import EntranceGate from "./components/EntranceGate";
 import CustomizationBar from "./components/CustomizationBar";
@@ -13,6 +13,7 @@ import PhotoGallery from "./components/PhotoGallery";
 import PrincipalVision from "./components/PrincipalVision";
 import Footer from "./components/Footer";
 import ImageLightboxModal from "./components/ImageLightboxModal";
+import QRCodePage from "./components/QRCodePage";
 
 function MainContent() {
   const { fontSize, bgScheme, styleTheme } = useTheme();
@@ -25,6 +26,41 @@ function MainContent() {
   const handleLock = () => {
     sessionStorage.removeItem("site_authenticated");
     setIsAuthenticated(false);
+  };
+
+  // Page Routing: 'home' or 'qrcode'
+  const [activePage, setActivePage] = useState(() => {
+    if (typeof window !== "undefined" && window.location.hash === "#qrcode") {
+      return "qrcode";
+    }
+    return "home";
+  });
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#qrcode") {
+        setActivePage("qrcode");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (activePage === "qrcode" && window.location.hash !== "#qrcode") {
+        setActivePage("home");
+      }
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, [activePage]);
+
+  const handleSelectPage = (page) => {
+    setActivePage(page);
+    if (page === "qrcode") {
+      if (window.location.hash !== "#qrcode") {
+        window.location.hash = "#qrcode";
+      }
+    } else {
+      if (window.location.hash === "#qrcode") {
+        window.history.pushState(null, "", window.location.pathname);
+      }
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const [modalState, setModalState] = useState({
@@ -61,49 +97,62 @@ function MainContent() {
       }`}
       id="top"
     >
-      {/* Top Customization Bar: Font (大/中/小), Scheme (淺色/深色/淡藍), Style (日/中/西), Lock */}
-      <CustomizationBar onLock={handleLock} />
+      {/* Top Customization Bar: Font (大/中/小), Scheme (淺/深/藍/綠), Style (日/中/西), Page Switch, Lock */}
+      <CustomizationBar
+        onLock={handleLock}
+        activePage={activePage}
+        onSelectPage={handleSelectPage}
+      />
 
       {/* Main Navbar */}
-      <Navbar />
+      <Navbar
+        activePage={activePage}
+        onSelectPage={handleSelectPage}
+      />
 
-      {/* Main Sections */}
-      <main>
-        {/* 1. Hero Section */}
-        <Hero
-          onOpenFlywheelModal={() =>
-            handleOpenImage(
-              "./images/flywheel/flywheel_poster.jpg",
-              "董勳遠主任 - 我有一個教育夢想（教育飛輪完整藍圖）",
-              "宏觀視野 × 創新治理 ｜ 卓越學孝 × 教練領導 ➔ 成就孩子"
-            )
-          }
-        />
+      {/* Main Page Routing */}
+      {activePage === "qrcode" ? (
+        <main>
+          <QRCodePage onBackToHome={() => handleSelectPage("home")} />
+        </main>
+      ) : (
+        <main>
+          {/* 1. Hero Section */}
+          <Hero
+            onOpenFlywheelModal={() =>
+              handleOpenImage(
+                "./images/flywheel/flywheel_poster.jpg",
+                "董勳遠主任 - 我有一個教育夢想（教育飛輪完整藍圖）",
+                "宏觀視野 × 創新治理 ｜ 卓越學孝 × 教練領導 ➔ 成就孩子"
+              )
+            }
+          />
 
-        {/* 2. Educational Flywheels */}
-        <EducationalFlywheel onOpenImageModal={handleOpenImage} />
+          {/* 2. Educational Flywheels */}
+          <EducationalFlywheel onOpenImageModal={handleOpenImage} />
 
-        {/* 3. Touching Stories & Turning Lives */}
-        <TouchingStories onOpenImage={handleOpenImage} />
+          {/* 3. Touching Stories & Turning Lives */}
+          <TouchingStories onOpenImage={handleOpenImage} />
 
-        {/* 4. Recommendation Letters & Endorsements */}
-        <RecommendationLetters onOpenImage={handleOpenImage} />
+          {/* 4. Recommendation Letters & Endorsements */}
+          <RecommendationLetters onOpenImage={handleOpenImage} />
 
-        {/* 5. Honors, Administrative Timeline & Licenses */}
-        <HonorsAndTimeline onOpenImage={handleOpenImage} />
+          {/* 5. Honors, Administrative Timeline & Licenses */}
+          <HonorsAndTimeline onOpenImage={handleOpenImage} />
 
-        {/* 6. Media News & Press Clippings */}
-        <MediaAndNews onOpenImage={handleOpenImage} />
+          {/* 6. Media News & Press Clippings */}
+          <MediaAndNews onOpenImage={handleOpenImage} />
 
-        {/* 7. Photographic Gallery */}
-        <PhotoGallery onOpenImage={handleOpenImage} />
+          {/* 7. Photographic Gallery */}
+          <PhotoGallery onOpenImage={handleOpenImage} />
 
-        {/* 8. Principal Vision & Governance Blueprint */}
-        <PrincipalVision />
-      </main>
+          {/* 8. Principal Vision & Governance Blueprint */}
+          <PrincipalVision />
+        </main>
+      )}
 
       {/* Footer */}
-      <Footer />
+      <Footer onSelectPage={handleSelectPage} />
 
       {/* Full-Screen Image Lightbox Modal */}
       <ImageLightboxModal
